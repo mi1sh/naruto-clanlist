@@ -1,24 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { Row, Col, Slider, Typography, Tooltip } from "antd";
+
+import Header from "./components/Header.tsx";
+import Table from "./components/Table.tsx";
+
+import "./index.css";
 
 function App() {
+  const [rows, setRows] = useState(5);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <Row>
+        <Col xs={24} md={{ span: 12, offset: 6 }}>
+          <Tooltip
+            placement="topLeft"
+            title='"move slider to change max number of objects per one page"'
+          >
+            <div style={{ width: "30%" }}>
+              <Typography.Title level={4}>Number of Clans</Typography.Title>
+              <Typography.Title level={4} style={{ marginTop: -15 }}>
+                in the table?
+              </Typography.Title>
+            </div>
+          </Tooltip>
+          <Slider
+            min={1}
+            max={21}
+            trackStyle={{ backgroundColor: "#f2a30b" }}
+            railStyle={{ backgroundColor: "#fff5ee" }}
+            keyboard
+            defaultValue={rows}
+            onChange={setRows}
+          />
+          <Table rows={rows} />
+        </Col>
+      </Row>
+    </>
   );
 }
 
