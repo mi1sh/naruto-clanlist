@@ -16,22 +16,3 @@ code {
     monospace;
 }
 
-.table-opacity {
-  opacity: 90%;
-}
-
-.table-row {
-  background-color: #faebd7;
-}
-
-.ant-table-thead .ant-table-cell {
-  background-color: #efdecd !important;
-}
-
-.ant-table-cell-row-hover {
-  background-color: #efdecd !important;
-}
-
-.ant-slider-handle::after {
-  background-color: #303030 !important;
-}

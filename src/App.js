@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Row, Col, Slider, Typography, Tooltip } from "antd";
+import { Row, Col, Slider, Typography, Tooltip, ConfigProvider } from "antd";
 
 import Header from "./components/Header.tsx";
-import Table from "./components/Table.tsx";
+import Table from "./components/Table";
 
 import "./index.css";
 
@@ -25,15 +25,27 @@ function App() {
               </Typography.Title>
             </div>
           </Tooltip>
-          <Slider
-            min={1}
-            max={21}
-            trackStyle={{ backgroundColor: "#f2a30b" }}
-            railStyle={{ backgroundColor: "#fff5ee" }}
-            keyboard
-            defaultValue={rows}
-            onChange={setRows}
-          />
+          <ConfigProvider
+            theme={{
+              token: {
+                colorBgElevated: "#303030",
+                colorPrimaryBorder: "#1677ff",
+                colorPrimary: "#0c2fdf",
+                controlHeight: 30,
+                motionDurationMid: 0.5,
+              },
+            }}
+          >
+            <Slider
+              min={1}
+              max={20}
+              trackStyle={{ backgroundColor: "#f2a30b" }}
+              railStyle={{ backgroundColor: "#fff5ee" }}
+              keyboard
+              defaultValue={rows}
+              onChange={setRows}
+            />
+          </ConfigProvider>
           <Table rows={rows} />
         </Col>
       </Row>

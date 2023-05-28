@@ -1,5 +1,7 @@
-import { Table, Typography, Image } from "antd";
+import { Table, Image, ConfigProvider, Button } from "antd";
 import { clanList } from "../data";
+
+import { InfoCircleOutlined } from "@ant-design/icons";
 
 import React from "react";
 
@@ -8,7 +10,6 @@ const columns = [
     title: "Clan name",
     dataIndex: "name",
     key: "name",
-    render: (text) => <Typography.Text copyable>{text}</Typography.Text>,
   },
   {
     title: "Village",
@@ -63,16 +64,31 @@ const dataSource = clanList.map((item) => ({ ...item, key: item.number }));
 
 const _Table = ({ rows = 5 }) => {
   return (
-    <Table
-      sticky
-      dataSource={dataSource}
-      columns={columns}
-      pagination={{
-        pageSize: rows,
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: "#f2a30b",
+          colorFillAlter: "#faebd7",
+          colorBgTextActive: "#f2a30b",
+          colorBgContainer: "#faebd7e6",
+          colorLinkHover: "#0929ce",
+        },
       }}
-      className="table-opacity"
-      rowClassName="table-row"
-    />
+    >
+      <Table
+        sticky
+        dataSource={dataSource}
+        columns={columns}
+        pagination={{
+          pageSize: rows,
+          position: ["bottomCenter"],
+          total: 20,
+          showTotal: (total) => `Total ${total} items`,
+        }}
+        className="table-opacity"
+        rowClassName="table-row"
+      />
+    </ConfigProvider>
   );
 };
 
