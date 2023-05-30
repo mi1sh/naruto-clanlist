@@ -1,4 +1,4 @@
-import { Table, Image, ConfigProvider, Button } from "antd";
+import { Table, Image, ConfigProvider } from "antd";
 import { clanList } from "../data";
 
 import { InfoCircleOutlined } from "@ant-design/icons";
@@ -10,6 +10,14 @@ const columns = [
     title: "Clan name",
     dataIndex: "name",
     key: "name",
+    render: (text, record) => (
+      <>
+        {text}
+        <a href={record.link} target="_blank" rel="noopener noreferrer">
+          <InfoCircleOutlined style={{ marginLeft: 5, color: "#0929ce" }} />
+        </a>
+      </>
+    ),
   },
   {
     title: "Village",
@@ -87,6 +95,7 @@ const _Table = ({ rows = 5 }) => {
         }}
         className="table-opacity"
         rowClassName="table-row"
+        rowKey="number"
       />
     </ConfigProvider>
   );
